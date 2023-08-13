@@ -1,6 +1,6 @@
-function getComputerChoice(min, max) {
-    let choice = Math.random() * (max - min) * min; // 1 ... 3
-    alert(choice.toFixed(0));
-}
+let comp = function getComputerChoice() {
+    let choice = Math.random() * (3 - 1) * 1; // 0, 1, 2.
+    return choice.toFixed(0);
+};
 
-getComputerChoice(1, 4);
+alert(comp());
