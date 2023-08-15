@@ -1,21 +1,20 @@
-let comp = function random() {
+let comp = (function random() {
     let choice = Math.random() * (3 - 1) * 1; // 0, 1, 2
-    return choice.toFixed(0);
-};
-
-// alert(comp());
+    let result = choice.toFixed();
+    return result;
+})();
 
 let computerSelection = function getComputerChoice() {
-    if (comp() == 0) {
+    if (comp === "0") {
         return "Камень";
-    } else if (comp() == 1) {
+    } else if (comp === "1") {
         return "Ножницы";
     } else {
         return "Бумага";
     }
 };
 
-alert(computerSelection());
+// alert(computerSelection());
 
 function playerSelection() {
     let playerChoiceNoRegister = prompt(
@@ -24,8 +23,6 @@ function playerSelection() {
     );
 
     let playerChoice = playerChoiceNoRegister.toLowerCase();
-
-    alert(playerChoice);
 
     if (playerChoice === "камень") {
         return "Камень";
