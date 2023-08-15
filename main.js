@@ -4,6 +4,13 @@ let comp = (function random() {
     return result;
 })();
 
+// новая запись присвоения переменной значения функции:
+
+// let Anylet = (function( {
+//     ..x..
+//     return x;
+// }());
+
 let computerSelection = function getComputerChoice() {
     if (comp === "0") {
         return "Камень";
