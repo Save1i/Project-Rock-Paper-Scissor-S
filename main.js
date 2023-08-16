@@ -51,10 +51,13 @@ function playerSelection() {
 
 function playRound(computerSelection, playerSelection) {
     if (computerSelection === "Камень" && playerSelection === "Ножницы") {
+        scoreComp++;
         return "Камень бьет ножницы. Ты проигал(";
     } else if (computerSelection === "Бумага" && playerSelection === "Камень") {
+        scoreComp++;
         return "Бумага бьет камень. Ты проиграл(";
     } else if (computerSelection == "Ножницы" && playerSelection === "Бумага") {
+        scoreComp++;
         return "Ножницы бьют бумагу. Ты проиграл(";
     } else if (
         computerSelection === "Бумага" &&
@@ -72,5 +75,10 @@ function playRound(computerSelection, playerSelection) {
         return "Ничья!";
     }
 }
+let scoreComp;
+
+let scorePeople;
+
+console.log("Победы игрока: " + scorePeople` ,Победы компьютера: ${scoreComp}`);
 
 alert(playRound(computerSelection(), playerSelection()));
