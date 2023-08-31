@@ -2,11 +2,19 @@ let scoreComp = 0;
 
 let scorePeople = 0;
 
-let comp = (function random() {
-    let choice = Math.random() * (3 - 1) * 1; // 0, 1, 2
-    let result = choice.toFixed();
-    return result;
-})();
+// let comp = (function random() {
+//     let choice = Math.round(Math.random() * 2); // 0, 1, 2
+//     return choice;
+// })();
+
+function random() {
+    let choice = Math.round(Math.random() * 2); // 0, 1, 2
+    return choice;
+}
+
+console.log(random());
+
+// console.log(comp);
 
 // новая запись присвоения переменной значения функции:
 
@@ -15,37 +23,90 @@ let comp = (function random() {
 //     return x;
 // }());
 
-let computerSelection = function getComputerChoice() {
-    if (comp === "0") {
+function getComputerChoice() {
+    if (random() == 0) {
         return "Камень";
-    } else if (comp === "1") {
+    } else if (random() == 1) {
         return "Ножницы";
     } else {
         return "Бумага";
-    }
-};
-
-// alert(computerSelection());
-
-function playerSelection() {
-    let playerChoiceNoRegister = prompt(
-        "Выбери: Камень, Ножницы, Бумага!",
-        "Бумага"
-    );
-
-    let playerChoice = playerChoiceNoRegister.toLowerCase();
-
-    if (playerChoice === "камень") {
-        return "Камень";
-    } else if (playerChoice === "ножницы") {
-        return "Ножницы";
-    } else if (playerChoice === "бумага") {
-        return "Бумага";
-    } else {
-        return "Не мухлюй";
     }
 }
 
+// let rock = document.querySelector(".rock");
+// let scissors = document.querySelector(".scissors");
+// let paper = document.querySelector(".paper");
+// console.log(rock);
+
+// let buttons = document.getElementsByClassName("btn");
+// let buttonScissors = document.getElementByClassName("scissors")[1];
+// let buttonPaper = document.getElementByClassName("paper")[2];
+
+// let buttons = document.querySelectorAll("button");
+let playerSelection = () => {
+    document.querySelector("#btn1").onclick = function () {
+        playRound("Камень");
+    };
+    document.querySelector("#btn2").onclick = function () {
+        playRound("Ножницы");
+    };
+    document.querySelector("#btn3").onclick = function () {
+        playRound("Бумага");
+    };
+};
+console.log(playerSelection());
+
+// for (i = 0; i < buttons.length; i++) {
+//     buttons[i].onclick = function () {
+//         console.log(buttons.value);
+//     };
+// }
+
+// buttons.forEach((button) => {
+//     button.addEventListener("click", function () {
+//         console.log(buttons.value);
+//     });
+// });
+// buttonRock.onclick = function () {
+//     alert("hahahhaa");
+// };
+
+// buttonRock.onclick = function () {
+//     console.log("Rock");
+// };
+// console.log(playerSelection());
+// function playerSelection() {
+//     if (button) {
+//         return "Камень";
+//     } else if (scissors) {
+//         return "Ножницы";
+//     } else if (paper) {
+//         return "Бумага";
+//     } else {
+//         return "Не мухлюй";
+//     }
+// }
+// alert(computerSelection());
+// ________________________________________________________________________________________
+// function playerSelection() {
+//     let playerChoiceNoRegister = prompt(
+//         "Выбери: Камень, Ножницы, Бумага!",
+//         "Бумага"
+//     );
+
+//     let playerChoice = playerChoiceNoRegister.toLowerCase();
+
+//     if (playerChoice === "камень") {
+//         return "Камень";
+//     } else if (playerChoice === "ножницы") {
+//         return "Ножницы";
+//     } else if (playerChoice === "бумага") {
+//         return "Бумага";
+//     } else {
+//         return "Не мухлюй";
+//     }
+// }
+// ________________________________________________________________________________________________
 // alert(playerSelection());
 
 // Ситуации:
@@ -53,30 +114,18 @@ function playerSelection() {
 // 2. бумага бьет камень
 // 3. ножницы бьют бумагу
 
-function playRound(computerSelection, playerSelection) {
-    if (computerSelection === "Камень" && playerSelection === "Ножницы") {
-        scoreComp++;
-        return "Камень бьет ножницы. Ты проигал(";
-    } else if (computerSelection === "Бумага" && playerSelection === "Камень") {
-        scoreComp++;
-        return "Бумага бьет камень. Ты проиграл(";
-    } else if (computerSelection == "Ножницы" && playerSelection === "Бумага") {
-        scoreComp++;
-        return "Ножницы бьют бумагу. Ты проиграл(";
-    } else if (
-        computerSelection === "Бумага" &&
-        playerSelection === "Ножницы"
+function playRound(playerSelection) {
+    let computerSelection = getComputerChoice();
+    // let result = "";
+    console.log(playerSelection);
+    console.log(computerSelection + " rjvg");
+    if (
+        (computerSelection == "Камень" && playerSelection == "Ножницы") ||
+        (computerSelection == "Бумага" && playerSelection == "Камень") ||
+        (computerSelection == "Ножницы" && playerSelection == "Бумага")
     ) {
-        scorePeople++;
-        return "Ножницы бьют бумагу. Ты выйграл)";
-    } else if (
-        computerSelection === "Ножницы" &&
-        playerSelection === "Камень"
-    ) {
-        scorePeople++;
-        return "Камень бьет ножницы. Ты выйграл)";
-    } else if (computerSelection === "Камень" && playerSelection === "Бумага") {
-        scorePeople++;
+        scoreComp++;
+
         console.log(
             "Победы игрока: " +
                 scorePeople +
@@ -84,14 +133,32 @@ function playRound(computerSelection, playerSelection) {
                 "Победы компьютера: " +
                 scoreComp
         );
-        return "Бумага бьет камень. Ты выйграл)";
+    } else if (
+        (computerSelection == "Бумага" && playerSelection == "Ножницы") ||
+        (computerSelection == "Ножницы" && playerSelection == "Камень") ||
+        (computerSelection == "Камень" && playerSelection == "Бумага")
+    ) {
+        scorePeople++;
+
+        console.log(
+            "Победы игрока: " +
+                scorePeople +
+                " ," +
+                "Победы компьютера: " +
+                scoreComp
+        );
     } else {
-        return "Ничья!";
+        scoreComp;
+        scorePeople;
+
+        console.log(
+            "Победы игрока: " +
+                scorePeople +
+                " ," +
+                "Победы компьютера: " +
+                scoreComp
+        );
     }
 }
 
-console.log(
-    "Победы игрока: " + scorePeople + " ," + "Победы компьютера: " + scoreComp
-);
-
-alert(playRound(computerSelection(), playerSelection()));
+console.log(playRound(playerSelection));
