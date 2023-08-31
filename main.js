@@ -43,7 +43,7 @@ function getComputerChoice() {
 // let buttonPaper = document.getElementByClassName("paper")[2];
 
 // let buttons = document.querySelectorAll("button");
-let playerSelection = () => {
+let playerSelection = function playerChoise() {
     document.querySelector("#btn1").onclick = function () {
         playRound("Камень");
     };
@@ -159,6 +159,8 @@ function playRound(playerSelection) {
                 "Победы компьютера: " +
                 scoreComp
         );
+    } else if (playerSelection() == undefined) {
+        result = "Let`s go";
     } else {
         result = "Ничья";
         scoreComp;
