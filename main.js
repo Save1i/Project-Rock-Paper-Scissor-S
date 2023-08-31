@@ -1,3 +1,7 @@
+let scoreComp = 0;
+
+let scorePeople = 0;
+
 let comp = (function random() {
     let choice = Math.random() * (3 - 1) * 1; // 0, 1, 2
     let result = choice.toFixed();
@@ -63,22 +67,31 @@ function playRound(computerSelection, playerSelection) {
         computerSelection === "Бумага" &&
         playerSelection === "Ножницы"
     ) {
+        scorePeople++;
         return "Ножницы бьют бумагу. Ты выйграл)";
     } else if (
         computerSelection === "Ножницы" &&
         playerSelection === "Камень"
     ) {
+        scorePeople++;
         return "Камень бьет ножницы. Ты выйграл)";
     } else if (computerSelection === "Камень" && playerSelection === "Бумага") {
+        scorePeople++;
+        console.log(
+            "Победы игрока: " +
+                scorePeople +
+                " ," +
+                "Победы компьютера: " +
+                scoreComp
+        );
         return "Бумага бьет камень. Ты выйграл)";
     } else {
         return "Ничья!";
     }
 }
-let scoreComp;
 
-let scorePeople;
-
-console.log("Победы игрока: " + scorePeople` ,Победы компьютера: ${scoreComp}`);
+console.log(
+    "Победы игрока: " + scorePeople + " ," + "Победы компьютера: " + scoreComp
+);
 
 alert(playRound(computerSelection(), playerSelection()));
