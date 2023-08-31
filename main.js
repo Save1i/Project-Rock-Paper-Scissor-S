@@ -116,7 +116,7 @@ console.log(playerSelection());
 
 function playRound(playerSelection) {
     let computerSelection = getComputerChoice();
-    // let result = "";
+    let result = "";
     console.log(playerSelection);
     console.log(computerSelection + " rjvg");
     if (
@@ -125,7 +125,13 @@ function playRound(playerSelection) {
         (computerSelection == "Ножницы" && playerSelection == "Бумага")
     ) {
         scoreComp++;
+        result = "Ты проиграл";
 
+        let people = document.querySelector(".people");
+        people.innerHTML = scorePeople;
+
+        let comp = document.querySelector(".comp");
+        comp.innerHTML = scoreComp;
         console.log(
             "Победы игрока: " +
                 scorePeople +
@@ -139,7 +145,13 @@ function playRound(playerSelection) {
         (computerSelection == "Камень" && playerSelection == "Бумага")
     ) {
         scorePeople++;
+        result = "Ты выйграл";
 
+        let people = document.querySelector(".people");
+        people.innerHTML = scorePeople;
+
+        let comp = document.querySelector(".comp");
+        comp.innerHTML = scoreComp;
         console.log(
             "Победы игрока: " +
                 scorePeople +
@@ -148,8 +160,15 @@ function playRound(playerSelection) {
                 scoreComp
         );
     } else {
+        result = "Ничья";
         scoreComp;
         scorePeople;
+
+        let people = document.querySelector(".people");
+        people.innerHTML = scorePeople;
+
+        let comp = document.querySelector(".comp");
+        comp.innerHTML = scoreComp;
 
         console.log(
             "Победы игрока: " +
@@ -159,6 +178,10 @@ function playRound(playerSelection) {
                 scoreComp
         );
     }
+    let resultElem = document.querySelector(".result");
+    resultElem.innerHTML = result;
+
+    return;
 }
 
 console.log(playRound(playerSelection));
