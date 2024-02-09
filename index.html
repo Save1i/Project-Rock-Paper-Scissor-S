@@ -1,27 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Document</title>
-        <style>
-            .body {
-                background-color: gray;
-            }
-        </style>
-    </head>
-    <body class="body">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="all">
+      <div class="menu">
         <button id="btn1">Rock</button>
         <button id="btn2">Scissors</button>
         <button id="btn3">Paper</button>
+      </div>
+
+      <div class="texts">
         <div class="result"></div>
         <div>
-            Победы игрока:
-            <a class="people"></a>
-            , Победы компьютера:
-            <a class="comp"></a>
+          Победы игрока:
+          <a class="people"></a>
+          , Победы компьютера:
+          <a class="comp"></a>
         </div>
-        <script src="main.js"></script>
-    </body>
+      </div>
+    </div>
+
+    <script src="main.js"></script>
+  </body>
 </html>

@@ -1,189 +1,84 @@
 let scoreComp = 0;
-
 let scorePeople = 0;
 
-// let comp = (function random() {
-//     let choice = Math.round(Math.random() * 2); // 0, 1, 2
-//     return choice;
-// })();
+let people = document.querySelector(".people");
+let comp = document.querySelector(".comp");
+
+people.textContent = scorePeople;
+comp.textContent = scoreComp;
 
 function random() {
-    let choice = Math.round(Math.random() * 2); // 0, 1, 2
-    return choice;
+  let choice = Math.round(Math.random() * 2); // 0, 1, 2
+  return choice;
 }
 
 console.log(random());
 
-// console.log(comp);
-
-// новая запись присвоения переменной значения функции:
-
-// let Anylet = (function( {
-//     ..x..
-//     return x;
-// }());
-
 function getComputerChoice() {
-    if (random() == 0) {
-        return "Камень";
-    } else if (random() == 1) {
-        return "Ножницы";
-    } else {
-        return "Бумага";
-    }
+  if (random() == 0) {
+    return "Камень";
+  } else if (random() == 1) {
+    return "Ножницы";
+  } else {
+    return "Бумага";
+  }
 }
 
-// let rock = document.querySelector(".rock");
-// let scissors = document.querySelector(".scissors");
-// let paper = document.querySelector(".paper");
-// console.log(rock);
+let playerSelection = ""; // Начальное значение
 
-// let buttons = document.getElementsByClassName("btn");
-// let buttonScissors = document.getElementByClassName("scissors")[1];
-// let buttonPaper = document.getElementByClassName("paper")[2];
+const menu = document.querySelector(".menu");
 
-// let buttons = document.querySelectorAll("button");
-let playerSelection = function playerChoise() {
-    document.querySelector("#btn1").onclick = function () {
-        playRound("Камень");
-    };
-    document.querySelector("#btn2").onclick = function () {
-        playRound("Ножницы");
-    };
-    document.querySelector("#btn3").onclick = function () {
-        playRound("Бумага");
-    };
-};
-console.log(playerSelection());
+menu.addEventListener("click", (event) => {
+  let target = event.target;
 
-// for (i = 0; i < buttons.length; i++) {
-//     buttons[i].onclick = function () {
-//         console.log(buttons.value);
-//     };
-// }
-
-// buttons.forEach((button) => {
-//     button.addEventListener("click", function () {
-//         console.log(buttons.value);
-//     });
-// });
-// buttonRock.onclick = function () {
-//     alert("hahahhaa");
-// };
-
-// buttonRock.onclick = function () {
-//     console.log("Rock");
-// };
-// console.log(playerSelection());
-// function playerSelection() {
-//     if (button) {
-//         return "Камень";
-//     } else if (scissors) {
-//         return "Ножницы";
-//     } else if (paper) {
-//         return "Бумага";
-//     } else {
-//         return "Не мухлюй";
-//     }
-// }
-// alert(computerSelection());
-// ________________________________________________________________________________________
-// function playerSelection() {
-//     let playerChoiceNoRegister = prompt(
-//         "Выбери: Камень, Ножницы, Бумага!",
-//         "Бумага"
-//     );
-
-//     let playerChoice = playerChoiceNoRegister.toLowerCase();
-
-//     if (playerChoice === "камень") {
-//         return "Камень";
-//     } else if (playerChoice === "ножницы") {
-//         return "Ножницы";
-//     } else if (playerChoice === "бумага") {
-//         return "Бумага";
-//     } else {
-//         return "Не мухлюй";
-//     }
-// }
-// ________________________________________________________________________________________________
-// alert(playerSelection());
-
-// Ситуации:
-// 1. камень бьет ножницы
-// 2. бумага бьет камень
-// 3. ножницы бьют бумагу
+  switch (target.id) {
+    case "btn1":
+      playerSelection = "Камень"; // Устанавливаем значение при нажатии кнопки
+      playRound(playerSelection);
+      break;
+    case "btn2":
+      playerSelection = "Ножницы"; // Устанавливаем значение при нажатии кнопки
+      playRound(playerSelection);
+      break;
+    case "btn3":
+      playerSelection = "Бумага"; // Устанавливаем значение при нажатии кнопки
+      playRound(playerSelection);
+      break;
+  }
+});
 
 function playRound(playerSelection) {
-    let computerSelection = getComputerChoice();
-    let result = "";
-    console.log(playerSelection);
-    console.log(computerSelection + " rjvg");
-    if (
-        (computerSelection == "Камень" && playerSelection == "Ножницы") ||
-        (computerSelection == "Бумага" && playerSelection == "Камень") ||
-        (computerSelection == "Ножницы" && playerSelection == "Бумага")
-    ) {
-        scoreComp++;
-        result = "Ты проиграл";
+  let computerSelection = getComputerChoice();
+  let result = "";
 
-        let people = document.querySelector(".people");
-        people.innerHTML = scorePeople;
+  if (playerSelection == "") {
+    result = "Let`s go";
+  } else if (
+    (computerSelection == "Камень" && playerSelection == "Ножницы") ||
+    (computerSelection == "Бумага" && playerSelection == "Камень") ||
+    (computerSelection == "Ножницы" && playerSelection == "Бумага")
+  ) {
+    scoreComp++;
+    result = "Ты проиграл";
 
-        let comp = document.querySelector(".comp");
-        comp.innerHTML = scoreComp;
-        console.log(
-            "Победы игрока: " +
-                scorePeople +
-                " ," +
-                "Победы компьютера: " +
-                scoreComp
-        );
-    } else if (
-        (computerSelection == "Бумага" && playerSelection == "Ножницы") ||
-        (computerSelection == "Ножницы" && playerSelection == "Камень") ||
-        (computerSelection == "Камень" && playerSelection == "Бумага")
-    ) {
-        scorePeople++;
-        result = "Ты выйграл";
+    people.innerHTML = scorePeople;
+    comp.innerHTML = scoreComp;
+  } else if (
+    (computerSelection == "Бумага" && playerSelection == "Ножницы") ||
+    (computerSelection == "Ножницы" && playerSelection == "Камень") ||
+    (computerSelection == "Камень" && playerSelection == "Бумага")
+  ) {
+    scorePeople++;
+    result = "Ты выйграл";
 
-        let people = document.querySelector(".people");
-        people.innerHTML = scorePeople;
+    people.innerHTML = scorePeople;
+    comp.innerHTML = scoreComp;
+  } else {
+    result = "Ничья";
+  }
 
-        let comp = document.querySelector(".comp");
-        comp.innerHTML = scoreComp;
-        console.log(
-            "Победы игрока: " +
-                scorePeople +
-                " ," +
-                "Победы компьютера: " +
-                scoreComp
-        );
-    } else if (playerSelection() == undefined) {
-        result = "Let`s go";
-    } else {
-        result = "Ничья";
-        scoreComp;
-        scorePeople;
+  let resultElem = document.querySelector(".result");
+  resultElem.innerHTML = result;
 
-        let people = document.querySelector(".people");
-        people.innerHTML = scorePeople;
-
-        let comp = document.querySelector(".comp");
-        comp.innerHTML = scoreComp;
-
-        console.log(
-            "Победы игрока: " +
-                scorePeople +
-                " ," +
-                "Победы компьютера: " +
-                scoreComp
-        );
-    }
-    let resultElem = document.querySelector(".result");
-    resultElem.innerHTML = result;
-
-    return;
+  console.log("Победы игрока: " + scorePeople + " ," + "Победы компьютера: " + scoreComp);
 }
-
-console.log(playRound(playerSelection));
