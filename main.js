@@ -47,13 +47,15 @@ menu.addEventListener("click", (event) => {
   }
 });
 
+let result = "Let`s go";
+let resultElem = document.querySelector(".result");
+resultElem.innerHTML = result;
+
 function playRound(playerSelection) {
   let computerSelection = getComputerChoice();
   let result = "";
 
-  if (playerSelection == "") {
-    result = "Let`s go";
-  } else if (
+  if (
     (computerSelection == "Камень" && playerSelection == "Ножницы") ||
     (computerSelection == "Бумага" && playerSelection == "Камень") ||
     (computerSelection == "Ножницы" && playerSelection == "Бумага")
@@ -81,4 +83,13 @@ function playRound(playerSelection) {
   resultElem.innerHTML = result;
 
   console.log("Победы игрока: " + scorePeople + " ," + "Победы компьютера: " + scoreComp);
+
+  if (scoreComp === 5 || scorePeople === 5) {
+    document.querySelectorAll(".menu button").forEach((btn) => {
+      console.log(btn);
+      btn.disabled = true;
+      btn.style = "background-color: #c1dfff";
+    });
+    return;
+  }
 }
