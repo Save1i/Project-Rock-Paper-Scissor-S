@@ -1,84 +1,84 @@
-let comp = (function random() {
-    let choice = Math.random() * (3 - 1) * 1; // 0, 1, 2
-    let result = choice.toFixed();
-    return result;
-})();
+let scoreComp = 0;
+let scorePeople = 0;
 
-// новая запись присвоения переменной значения функции:
+let people = document.querySelector(".people");
+let comp = document.querySelector(".comp");
 
-// let Anylet = (function( {
-//     ..x..
-//     return x;
-// }());
+people.textContent = scorePeople;
+comp.textContent = scoreComp;
 
-let computerSelection = function getComputerChoice() {
-    if (comp === "0") {
-        return "Камень";
-    } else if (comp === "1") {
-        return "Ножницы";
-    } else {
-        return "Бумага";
-    }
-};
-
-// alert(computerSelection());
-
-function playerSelection() {
-    let playerChoiceNoRegister = prompt(
-        "Выбери: Камень, Ножницы, Бумага!",
-        "Бумага"
-    );
-
-    let playerChoice = playerChoiceNoRegister.toLowerCase();
-
-    if (playerChoice === "камень") {
-        return "Камень";
-    } else if (playerChoice === "ножницы") {
-        return "Ножницы";
-    } else if (playerChoice === "бумага") {
-        return "Бумага";
-    } else {
-        return "Не мухлюй";
-    }
+function random() {
+  let choice = Math.round(Math.random() * 2); // 0, 1, 2
+  return choice;
 }
 
-// alert(playerSelection());
+console.log(random());
 
-// Ситуации:
-// 1. камень бьет ножницы
-// 2. бумага бьет камень
-// 3. ножницы бьют бумагу
-
-function playRound(computerSelection, playerSelection) {
-    if (computerSelection === "Камень" && playerSelection === "Ножницы") {
-        scoreComp++;
-        return "Камень бьет ножницы. Ты проигал(";
-    } else if (computerSelection === "Бумага" && playerSelection === "Камень") {
-        scoreComp++;
-        return "Бумага бьет камень. Ты проиграл(";
-    } else if (computerSelection == "Ножницы" && playerSelection === "Бумага") {
-        scoreComp++;
-        return "Ножницы бьют бумагу. Ты проиграл(";
-    } else if (
-        computerSelection === "Бумага" &&
-        playerSelection === "Ножницы"
-    ) {
-        return "Ножницы бьют бумагу. Ты выйграл)";
-    } else if (
-        computerSelection === "Ножницы" &&
-        playerSelection === "Камень"
-    ) {
-        return "Камень бьет ножницы. Ты выйграл)";
-    } else if (computerSelection === "Камень" && playerSelection === "Бумага") {
-        return "Бумага бьет камень. Ты выйграл)";
-    } else {
-        return "Ничья!";
-    }
+function getComputerChoice() {
+  if (random() == 0) {
+    return "Камень";
+  } else if (random() == 1) {
+    return "Ножницы";
+  } else {
+    return "Бумага";
+  }
 }
-let scoreComp;
 
-let scorePeople;
+let playerSelection = ""; // Начальное значение
 
-console.log("Победы игрока: " + scorePeople` ,Победы компьютера: ${scoreComp}`);
+const menu = document.querySelector(".menu");
 
-alert(playRound(computerSelection(), playerSelection()));
+menu.addEventListener("click", (event) => {
+  let target = event.target;
+
+  switch (target.id) {
+    case "btn1":
+      playerSelection = "Камень"; // Устанавливаем значение при нажатии кнопки
+      playRound(playerSelection);
+      break;
+    case "btn2":
+      playerSelection = "Ножницы"; // Устанавливаем значение при нажатии кнопки
+      playRound(playerSelection);
+      break;
+    case "btn3":
+      playerSelection = "Бумага"; // Устанавливаем значение при нажатии кнопки
+      playRound(playerSelection);
+      break;
+  }
+});
+
+function playRound(playerSelection) {
+  let computerSelection = getComputerChoice();
+  let result = "";
+
+  if (playerSelection == "") {
+    result = "Let`s go";
+  } else if (
+    (computerSelection == "Камень" && playerSelection == "Ножницы") ||
+    (computerSelection == "Бумага" && playerSelection == "Камень") ||
+    (computerSelection == "Ножницы" && playerSelection == "Бумага")
+  ) {
+    scoreComp++;
+    result = "Ты проиграл";
+
+    people.innerHTML = scorePeople;
+    comp.innerHTML = scoreComp;
+  } else if (
+    (computerSelection == "Бумага" && playerSelection == "Ножницы") ||
+    (computerSelection == "Ножницы" && playerSelection == "Камень") ||
+    (computerSelection == "Камень" && playerSelection == "Бумага")
+  ) {
+    scorePeople++;
+    result = "Ты выйграл";
+
+    people.innerHTML = scorePeople;
+    comp.innerHTML = scoreComp;
+  } else {
+    result = "Ничья";
+  }
+
+  let resultElem = document.querySelector(".result");
+  resultElem.innerHTML = result;
+
+  console.log("Победы игрока: " + scorePeople + " ," + "Победы компьютера: " + scoreComp);
+}
