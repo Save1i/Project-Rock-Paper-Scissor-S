@@ -1,5 +1,10 @@
-let scoreComp = 0;
-let scorePeople = 0;
+const User = {
+  score: 0
+}
+
+const Computer = {
+  score: 0
+}
 
 let peopleScore = document.querySelector(".people");
 let compScore = document.querySelector(".comp");
