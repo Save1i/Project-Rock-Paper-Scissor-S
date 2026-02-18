@@ -1,11 +1,11 @@
 let scoreComp = 0;
 let scorePeople = 0;
 
-let people = document.querySelector(".people");
-let comp = document.querySelector(".comp");
+let peopleScore = document.querySelector(".people");
+let compScore = document.querySelector(".comp");
 
-people.textContent = scorePeople;
-comp.textContent = scoreComp;
+peopleScore.textContent = scorePeople;
+compScore.textContent = scoreComp;
 
 function random() {
   let choice = Math.round(Math.random() * 2); // 0, 1, 2
