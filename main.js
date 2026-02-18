@@ -21,24 +21,9 @@ function getComputerChoice() {
 
 function getPlayerChoice() {
   document.querySelector('.menu').addEventListener('click', event => {
-		let target = event.target
-
-		switch (target.id) {
-			case 'btn1':
-				playerSelection = 'Камень' // Устанавливаем значение при нажатии кнопки
-				playRound(playerSelection)
-				break
-			case 'btn2':
-				playerSelection = 'Ножницы' // Устанавливаем значение при нажатии кнопки
-				playRound(playerSelection)
-				break
-			case 'btn3':
-				playerSelection = 'Бумага' // Устанавливаем значение при нажатии кнопки
-				playRound(playerSelection)
-				break
-		}
-	})
-}
+    return event.target.id
+  }
+)};
 
 let playerSelection = ""; // Начальное значение
 
