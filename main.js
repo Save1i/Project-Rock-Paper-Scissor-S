@@ -15,18 +15,8 @@ compScore.textContent = scoreComp;
 //
 
 
-function random() {
-  return Math.round(Math.random() * 2); // 0, 1, 2
-}
-
-function getComputerChoice(randNum) {
-  if (randNum == 0) {
-		return 'Камень'
-	} else if (randNum == 1) {
-		return 'Ножницы'
-	} else {
-		return 'Бумага'
-	}
+function getComputerChoice() {
+	return Math.round(Math.random() * 2) // 0, 1, 2
 }
 
 let playerSelection = ""; // Начальное значение
