@@ -6,60 +6,57 @@ const Computer = {
   score: 0
 }
 
-
-// перенести в функцию самой игры
-let peopleScore = document.querySelector(".people");
-let compScore = document.querySelector(".comp");
-peopleScore.textContent = scorePeople;
-compScore.textContent = scoreComp;
-//
-
-
 function getComputerChoice() {
 	return Math.round(Math.random() * 2) // 0, 1, 2
 }
 
 function getPlayerChoice() {
   document.querySelector('.menu').addEventListener('click', event => {
-    return event.target.id
+    playRound(event.target.id)
   }
 )};
 
-let playerSelection = ""; // Начальное значение
-
 function playRound(playerSelection) {
-  let randNum = random();
-  let computerSelection = getComputerChoice(randNum)
-  let result = "";
+  let peopleScore = document.querySelector('.people')
+	let compScore = document.querySelector('.comp')
+  
+  let computerSelection = getComputerChoice()
+  let result = "Делай ход";
+  
+  
+  if(playerSelection) {
+		let roundResult = computerSelection - playerSelection
 
-  if (playerSelection == "") {
-    result = "Let`s go";
-  } else if (
-    (computerSelection == "Камень" && playerSelection == "Ножницы") ||
-    (computerSelection == "Бумага" && playerSelection == "Камень") ||
-    (computerSelection == "Ножницы" && playerSelection == "Бумага")
-  ) {
-    scoreComp++;
-    result = "Ты проиграл";
-
-    people.innerHTML = scorePeople;
-    comp.innerHTML = scoreComp;
-  } else if (
-    (computerSelection == "Бумага" && playerSelection == "Ножницы") ||
-    (computerSelection == "Ножницы" && playerSelection == "Камень") ||
-    (computerSelection == "Камень" && playerSelection == "Бумага")
-  ) {
-    scorePeople++;
-    result = "Ты выйграл";
-
-    people.innerHTML = scorePeople;
-    comp.innerHTML = scoreComp;
-  } else {
-    result = "Ничья";
-  }
-
-  let resultElem = document.querySelector(".result");
-  resultElem.innerHTML = result;
-
-  console.log("Победы игрока: " + scorePeople + " ," + "Победы компьютера: " + scoreComp);
+		if (roundResult == 0) {
+			result = 'ничья'
+			console.log('ничья')
+		} else if (roundResult == 1 || roundResult == -2) {
+			console.log('ты победил')
+			result = 'ты победил'
+			User.score++
+		} else {
+			result = 'ты проиграл'
+			console.log('ты проиграл')
+			Computer.score++
+		}
+    	peopleScore.textContent = User.score
+			compScore.textContent = Computer.score
+	}
+		let resultElem = document.querySelector('.result')
+		resultElem.innerHTML = result
+    
+    
+  console.log(
+		'Победы игрока: ' +
+			User.score +
+			' ,' +
+			'Победы компьютера: ' +
+			Computer.score,
+	)
 }
+
+window.addEventListener('load', () => {
+
+  playRound()
+})
+  getPlayerChoice()
