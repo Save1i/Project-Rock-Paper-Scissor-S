@@ -19,28 +19,28 @@ function getComputerChoice() {
 	return Math.round(Math.random() * 2) // 0, 1, 2
 }
 
+function getPlayerChoice() {
+  document.querySelector('.menu').addEventListener('click', event => {
+		let target = event.target
+
+		switch (target.id) {
+			case 'btn1':
+				playerSelection = 'Камень' // Устанавливаем значение при нажатии кнопки
+				playRound(playerSelection)
+				break
+			case 'btn2':
+				playerSelection = 'Ножницы' // Устанавливаем значение при нажатии кнопки
+				playRound(playerSelection)
+				break
+			case 'btn3':
+				playerSelection = 'Бумага' // Устанавливаем значение при нажатии кнопки
+				playRound(playerSelection)
+				break
+		}
+	})
+}
+
 let playerSelection = ""; // Начальное значение
-
-const menu = document.querySelector(".menu");
-
-menu.addEventListener("click", (event) => {
-  let target = event.target;
-
-  switch (target.id) {
-    case "btn1":
-      playerSelection = "Камень"; // Устанавливаем значение при нажатии кнопки
-      playRound(playerSelection);
-      break;
-    case "btn2":
-      playerSelection = "Ножницы"; // Устанавливаем значение при нажатии кнопки
-      playRound(playerSelection);
-      break;
-    case "btn3":
-      playerSelection = "Бумага"; // Устанавливаем значение при нажатии кнопки
-      playRound(playerSelection);
-      break;
-  }
-});
 
 function playRound(playerSelection) {
   let randNum = random();
