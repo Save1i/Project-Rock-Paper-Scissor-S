@@ -6,27 +6,27 @@ const Computer = {
   score: 0
 }
 
+
+// перенести в функцию самой игры
 let peopleScore = document.querySelector(".people");
 let compScore = document.querySelector(".comp");
-
 peopleScore.textContent = scorePeople;
 compScore.textContent = scoreComp;
+//
+
 
 function random() {
-  let choice = Math.round(Math.random() * 2); // 0, 1, 2
-  return choice;
+  return Math.round(Math.random() * 2); // 0, 1, 2
 }
 
-console.log(random());
-
-function getComputerChoice() {
-  if (random() == 0) {
-    return "Камень";
-  } else if (random() == 1) {
-    return "Ножницы";
-  } else {
-    return "Бумага";
-  }
+function getComputerChoice(randNum) {
+  if (randNum == 0) {
+		return 'Камень'
+	} else if (randNum == 1) {
+		return 'Ножницы'
+	} else {
+		return 'Бумага'
+	}
 }
 
 let playerSelection = ""; // Начальное значение
@@ -53,7 +53,8 @@ menu.addEventListener("click", (event) => {
 });
 
 function playRound(playerSelection) {
-  let computerSelection = getComputerChoice();
+  let randNum = random();
+  let computerSelection = getComputerChoice(randNum)
   let result = "";
 
   if (playerSelection == "") {
